@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jumper.readCard.mapper.CardDataMapper">
+
+    <insert id="insertCardData" parameterType="com.jumper.readCard.pojo.CardData">
+        INSERT INTO carddata(NAME,sex,nation,born,address,cardNo,police,activityLFrom,activityLTo,deviceNo,photoBuffer,DATE) VALUES (#{name},#{sex},#{nation},#{born},#{address},#{cardNo},#{police},#{activityLFrom},#{activityLTo},#{deviceNo},#{photoBuffer},#{date})
+    </insert>
+
+    <select id="selectCardDataByTime" resultType="com.jumper.readCard.pojo.SimpleCardData">
+        SELECT NAME,sex,nation,address,carddata.cardNo cardNo,DATE,countNum FROM carddata,
+        (SELECT COUNT(1) countnum,cardNo FROM carddata WHERE DATE_FORMAT(DATE,'%Y-%m-%d %H:%i') BETWEEN #{begin} AND #{end} GROUP BY cardNo) counttable
+        WHERE DATE_FORMAT(DATE,'%Y-%m-%d %H:%i') BETWEEN #{begin} AND #{end} AND cardData.cardNo=counttable.cardNo ORDER BY DATE ASC
+    </select>
+
+    <select id="selectLastThreeTime" resultType="com.jumper.readCard.pojo.DateData">
+        SELECT DATE FROM carddata WHERE DATE_FORMAT(DATE,'%Y-%m-%d %H:%i') BETWEEN #{begin} AND #{end} AND cardNo = #{cardNo} ORDER BY DATE DESC LIMIT 0,3
+    </select>
+
+</mapper>

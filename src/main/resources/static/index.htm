@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0144)file://C:\Documents and Settings\Administrator\Local Settings\Temporary Internet Files\Content.IE5\8PI3C9Y7\D__EBUSIN~1_二代证~1_IDCARD~1[1].HTM -->
+<HTML><HEAD><TITLE>第二代居民身份证网页ActiveX控件测试网页</TITLE>
+<SCRIPT language=JavaScript>
+<!--
+
+
+function ReadIDCard() {
+   clearForm();
+   var ret = CVR_IDCard.ReadCard();
+   if (ret == "0"){
+      fillForm();
+      return;
+   } 
+
+   alert("读卡错误,错误原因:" + ret);
+}
+
+function fillForm() {   
+  var pName=CVR_IDCard.Name; 
+  var pSex=CVR_IDCard.Sex;
+  var pNation=CVR_IDCard.Nation;
+  var pBorn=CVR_IDCard.Born;
+  var pAddress=CVR_IDCard.Address;
+  var pCardNo=CVR_IDCard.CardNo;
+  var pPolice=CVR_IDCard.IssuedAt;
+  var pActivityLFrom=CVR_IDCard.EffectedDate; 
+  var pActivityLTo=CVR_IDCard.ExpiredDate; 
+  var pDeviceNo=CVR_IDCard.CardReaderId;
+  var pPhotoBuffer=CVR_IDCard.Picture; 
+
+  document.all['Name'].value = pName; 
+  document.all['Sex'].value = pSex; 
+  document.all['Nation'].value = pNation; 
+  document.all['Born'].value = pBorn; 
+  document.all['Address'].value = pAddress; 
+  document.all['CardNo'].value = pCardNo; 
+  document.all['Police'].value = pPolice;  
+  document.all['ActivityLFrom'].value = pActivityLFrom; 
+  document.all['DeviceNo'].value = pDeviceNo; 
+  document.all['ActivityLTo'].value = pActivityLTo; 
+  document.all['PhotoBuffer'].value = pPhotoBuffer; 
+  document.all['PhotoDisplay'].src = 'data:image/jpeg;base64,' + pPhotoBuffer; 
+}
+
+function clearForm() {
+  document.all['Name'].value = ''; 
+  document.all['Sex'].value = ''; 
+  document.all['Nation'].value = ''; 
+  document.all['Born'].value = ''; 
+  document.all['Address'].value = ''; 
+  document.all['CardNo'].value = ''; 
+  document.all['Police'].value = '';  
+  document.all['ActivityLFrom'].value = ''; 
+  document.all['ActivityLTo'].value = ''; 
+  document.all['PhotoBuffer'].value = ''; 
+  document.all['PhotoDisplay'].src = ''; 
+  document.all['DeviceNo'].value = ''; 
+
+}
+
+//-->
+</SCRIPT>
+
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2900.6287" name=GENERATOR></HEAD>
+<BODY bgColor=#d2f0ff topMargin=0>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width="100%" colSpan=3>
+      <P align=center><B><FONT color=#5555ff 
+      size=6>第二代居民身份证<BR>网页ActiveX控件<BR>基准测试网页</FONT></B></P></TD></TR></TBODY></TABLE>
+<P>
+<OBJECT id=CVR_IDCard height=0 width=0 classid=clsid:10946843-7507-44FE-ACE8-2B3483D179B7 name=CVR_IDCard></OBJECT>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD>&nbsp;</TD>
+    <TD><INPUT onclick=ReadIDCard() type=button value=读身份证 name=ReadCard>(点击此按钮，调用控件的ReadCard方法，该方法返回"0"表示成功，返回其他为具体错误原因)</TD></TR>
+  <TR>
+    <TD align=right>姓名：</TD>
+    <TD><INPUT size=49 name=Name>(要求中间，两头都没有空格)</TD></TR>
+  <TR>
+    <TD align=right>性别：</TD>
+    <TD><INPUT size=49 name=Sex>(取值为“1”（表示“男”）或“0”（表示“女”）)</TD></TR>
+  <TR>
+    <TD align=right>民族：</TD>
+    <TD><INPUT size=49 name=Nation>(汉字即可)</TD></TR>
+  <TR>
+    <TD align=right>出生：</TD>
+    <TD><INPUT size=49 name=Born>(要求格式为:yyyyMMdd，长度为8)</TD></TR>
+  <TR>
+    <TD align=right>地址：</TD>
+    <TD><INPUT size=49 name=Address></TD></TR>
+  <TR>
+    <TD align=right>身份证号：</TD>
+    <TD><INPUT style="COLOR: #ff0000" size=49 name=CardNo>(居民身份号码，长度18位)</TD></TR>
+  <TR>
+    <TD align=right>签发机关：</TD>
+    <TD><INPUT size=49 name=Police></TD></TR>
+  <TR>
+    <TD align=right>期限起始：</TD>
+    <TD><INPUT size=49 name=ActivityLFrom>(要求格式为:yyyyMMdd，长度为8)</TD></TR>
+  <TR>
+    <TD align=right>期限失效：</TD>
+    <TD><INPUT size=49 name=ActivityLTo>(要求格式为:yyyyMMdd，长度为8)</TD></TR>
+  <TR>
+   <TR>
+    <TD align=right>设备ID：</TD>
+    <TD><INPUT size=49 name=DeviceNo></TD></TR>
+  <TR>
+    <TD align=right>照片编码：</TD>
+    <TD><TEXTAREA name=PhotoBuffer rows=4 cols=47></TEXTAREA>(照片数据流，要求为JPG文件数据流进行BASE64编码得到的字符串)</TD></TR>
+  <TR>
+    <TD align=right>照片：</TD>
+    <TD><IMG style="WIDTH: 124px; HEIGHT: 150px" 
+      name=PhotoDisplay>(照片，在IE8中可以显示)</TD></TR></TBODY></TABLE></P></BODY></HTML>

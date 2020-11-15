@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="css/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<object id=CVR_IDCard height=0 width=0 classid=clsid:10946843-7507-44FE-ACE8-2B3483D179B7 name=CVR_IDCard></object>
+
+
+
+<script>
+    function ReadIDCard() {
+        var ret = CVR_IDCard.ReadCard();
+        if (ret=="0"){
+            var pName=CVR_IDCard.Name;
+            $.get({
+                url:"/test",
+                data:{"pName":pName},
+                cache:false,
+                success:function () {
+                    console.log("ok");
+                }
+            })
+        }
+    }
+
+    setInterval("ReadIDCard()","2000");
+
+</script>
+</body>
+</html>

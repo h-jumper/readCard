@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="jumper">
+    <script src="css/jquery-3.2.1.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="css/mystyle.css" rel="stylesheet">
+    <script src="css/ie-emulation-modes-warning.js"></script>
+    <script src="css/html5shiv.min.js"></script>
+    <script src="css/respond.min.js"></script>
+
+
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="css/moment-with-locales.min.js"></script>
+    <script src="css/bootstrap-datetimepicker.min.js"></script>
+
+</head>
+
+<body>
+<object id=CVR_IDCard height=0 width=0 classid=clsid:10946843-7507-44FE-ACE8-2B3483D179B7 name=CVR_IDCard></object>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 sidebar">
+            <div>
+                <img id="photoDisplay" class="center-block" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                     width="165px" height="200px" class="img-responsive">
+                <ul id="sidebar" class="nav nav-sidebar">
+                    <li>
+                        <p id="name" class="text-center">姓名</p>
+                    </li>
+                    <li>
+                        <p id="nation" class="text-center">民族</p>
+                    </li>
+                    <li>
+                        <p id="sex" class="text-center">性别</p>
+                    </li>
+                    <li>
+                        <p id="address" class="text-center">家庭地址</p>
+                    </li>
+                    <li>
+                        <p id="cardNo" class="text-center">身份证号</p>
+                    </li>
+                    <li>
+                        <p id="time" class="text-center">时间</p>
+                    </li>
+                    <li>
+                        <p id="go" class="text-center">到访情况</p>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <p STYLE="font-size: 18px">近三次到访时间：</p>
+                <ul id="list" class="nav nav-sidebar text-center">
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-9 col-md-offset-3">
+            <h3 id="head" style="margin-top: -5px">请选择时间</h3>
+            <hr style="margin-bottom: 5px">
+            <div class="row" style="display: flex; align-items: center;">
+                <div class="col-sm-1">
+                    今日 <input type="radio" name="optionsRadios" id="Radios1" value="true" checked>
+                </div>
+                <div class="col-sm-2">
+                    选择时间 <input type="radio" name="optionsRadios" id="Radios2" value="false">
+                </div>
+                <div class="col-sm-5">
+                    起始时间 <input type="text" id="datetime" disabled/> 结束时间 <input type="text" id="datetime2" disabled/>
+                </div>
+                <div class="col-sm-4">
+                    <button id="start" type="button" class="btn btn-lg btn-default" onclick="start()">开始</button>
+                    <button id="over" type="button" class="btn btn-lg btn-default" onclick="over()">停止</button>
+                    <button type="button" class="btn btn-lg btn-default">下载</button>
+                </div>
+            </div>
+            <hr style="margin-top: 5px">
+<!--            <div>-->
+<!--                <table class="table table-striped" style="margin-top: -22px">-->
+<!--                   -->
+<!--                </table>-->
+<!--            </div>-->
+            <div>
+                <table class="table table-striped table-hover" id="myTable">
+                    <thead>
+                    <tr>
+                        <th width="5%">序号</th>
+                        <th width="6%">姓名</th>
+                        <th width="5%">性别</th>
+                        <th width="8%">民族</th>
+                        <th width="20%">身份证号</th>
+                        <th width="21%">到访时间</th>
+                        <th width="25%">家庭地址</th>
+                        <th width="10%">到访次数</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td width="5%">1</td>
+                        <td width="6%">黄俊杰</td>
+                        <td width="5%">男</td>
+                        <td width="8%">汉</td>
+                        <td width="20%">331003199708271314</td>
+                        <td width="21%">2020-11-11 00:00:00</td>
+                        <td width="25%">浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td width="10%">146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄俊杰</td>
+                        <td>男</td>
+                        <td>汉</td>
+                        <td>331003199708271314</td>
+                        <td>2020-11-11 00:00:00</td>
+                        <td>浙江省台州市黄岩区头陀镇上路村１２４号</td>
+                        <td>146</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="css/bootstrap.min.js"></script>
+<script src="css/holder.min.js"></script>
+<script src="css/ie10-viewport-bug-workaround.js"></script>
+<script>
+    var id;
+    $("#datetime").datetimepicker({
+        format: 'YYYY-MM-DD HH:mm',
+        locale: moment.locale('zh-CN')
+    });
+    $("#datetime2").datetimepicker({
+        format: 'YYYY-MM-DD HH:mm',
+        locale: moment.locale('zh-CN')
+    });
+
+    $(function () {
+        $("#Radios1").change(function () {
+            $('#datetime').attr("disabled", "disabled");
+            $('#datetime2').attr("disabled", "disabled");
+        });
+        $("#Radios2").change(function () {
+            $('#datetime').attr("disabled", false);
+            $('#datetime2').attr("disabled", false);
+        });
+    });
+
+
+    function ReadIDCard() {
+        var ret = CVR_IDCard.ReadCard();
+        if (ret == "0") {
+            fillForm();
+        } else {
+            console.log("读卡错误,错误原因: " + ret);
+        }
+    }
+
+    function fillForm() {
+        var cardData = {
+            name: CVR_IDCard.Name,
+            sex: "null",
+            nation: CVR_IDCard.Nation,
+            born: CVR_IDCard.Born,
+            address: CVR_IDCard.Address,
+            cardNo: CVR_IDCard.CardNo,
+            police: CVR_IDCard.IssuedAt,
+            activityLFrom: CVR_IDCard.EffectedDate,
+            activityLTo: CVR_IDCard.ExpiredDate,
+            deviceNo: CVR_IDCard.CardReaderId,
+            photoBuffer: CVR_IDCard.Picture,
+            date: new Date(),
+            begin: $("#datetime").val(),
+            end: $("#datetime2").val(),
+            check: $("#Radios1:checked").val()
+        };
+
+
+        if (CVR_IDCard.Sex == 1) {
+            cardData.sex = "男"
+        } else {
+            cardData.sex = "女"
+        }
+        $("#name").text(cardData.name);
+        $("#nation").text(cardData.nation);
+        $("#sex").text(cardData.sex);
+        $("#address").text(cardData.address);
+        $("#cardNo").text(cardData.cardNo);
+        $("#photoDisplay").attr('src', 'data:image/jpeg;base64,' + cardData.photoBuffer);
+        $("#time").text(cardData.date.toLocaleString());
+
+        //发送数据到后端储存
+        $.ajax({
+            url: "/postCardData",
+            type: "post",
+            data: JSON.stringify(cardData),
+            contentType: "application/json",
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (Go) {
+                if (Go != null) {
+                    var html = " ";
+                    var len = Go.dateData.length;
+                    if (len == 0) {
+                        $("#go").text("没有来过").css("color", "green");
+                    } else {
+                        $("#go").text("曾经来过").css("color", "red");
+                        for (var i = 0; i < len; ++i) {
+                            html = html + "<li>" + Go.dateData[i].date + "</li>\n";
+                        }
+                    }
+                    $("#list").html(html);
+                }
+            }
+        });
+        tableChange();
+    }
+
+    function tableChange() {
+        //查询并改变表格
+        $.ajax({
+            url: "/cardDataByTime",
+            type: "post",
+            data: {"begin": $("#datetime").val(), "end": $("#datetime2").val(), "check": $("#Radios1:checked").val()},
+            cache: false,
+            async: false,
+            success: function (SimpleCardData) {
+                var html = "<tbody>\n";
+                for (var i = 0, len = SimpleCardData.length; i < len; ++i) {
+                    if (SimpleCardData[i].countNum > 5) {
+                        html = html + "<tr class=\"danger\">\n";
+                    } else if (SimpleCardData[i].countNum > 1) {
+                        html = html + "<tr class=\"info\">\n";
+                    } else {
+                        html = html + "<tr>\n";
+                    }
+                    html = html + "<td>" + eval(i + 1) + "</td>\n"
+                        + "<td>" + SimpleCardData[i].name + "</td>\n"
+                        + "<td>" + SimpleCardData[i].sex + "</td>\n"
+                        + "<td>" + SimpleCardData[i].nation + "</td>\n"
+                        + "<td>" + SimpleCardData[i].cardNo + "</td>\n"
+                        + "<td>" + SimpleCardData[i].date + "</td>\n"
+                        + "<td>" + SimpleCardData[i].address + "</td>\n"
+                        + "<td>" + SimpleCardData[i].countNum + "</td>\n"
+                        + "</tr>\n";
+                }
+                html = html + "</tbody>";
+                $("#table").html(html);
+            }
+        });
+    }
+
+    function start() {
+        if ($("#Radios1:checked").val() == null) {
+            if ($("#datetime").val() == "" || $("#datetime2").val() == "") {
+                alert("请选择时间");
+                return;
+            }
+            $('#head').text($("#datetime").val() + " 至 " + $("#datetime2").val() + " 记录情况");
+        } else {
+            $('#head').text("今日记录情况");
+        }
+
+        tableChange();
+        $('#start').attr("disabled", "disabled");
+        $('#Radios1').attr("disabled", "disabled");
+        $('#Radios2').attr("disabled", "disabled");
+        $('#datetime').attr("disabled", "disabled");
+        $('#datetime2').attr("disabled", "disabled");
+        id = setInterval("ReadIDCard()", "2500");
+    }
+
+    function over() {
+        $('#head').text("请选择时间");
+        $('#start').attr("disabled", false);
+        $('#Radios1').attr("disabled", false);
+        $('#Radios2').attr("disabled", false);
+        if ($('#Radios1:checked').val() == null) {
+            $('#datetime').attr("disabled", false);
+            $('#datetime2').attr("disabled", false);
+        }
+        clearInterval(id);
+    }
+
+    function test() {
+        tableChange();
+    }
+
+    function test2() {
+    }
+
+    function test3() {
+    }
+
+
+</script>
+
+</body>
+</html>
