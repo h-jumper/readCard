@@ -18,4 +18,10 @@
         SELECT DATE FROM carddata WHERE DATE_FORMAT(DATE,'%Y-%m-%d %H:%i') BETWEEN #{begin} AND #{end} AND cardNo = #{cardNo} ORDER BY DATE DESC LIMIT 0,3
     </select>
 
+    <select id="selectCardDataByTimeForXLS" resultType="com.jumper.readCard.pojo.CardData">
+        SELECT NAME,sex,nation,born,address,carddata.cardNo cardNo,police,activityLFrom,activityLTo,deviceNo,photoBuffer,DATE,countNum FROM carddata,
+        (SELECT COUNT(1) countnum,cardNo FROM carddata WHERE DATE_FORMAT(DATE,'%Y-%m-%d %H:%i') BETWEEN #{begin} AND #{end} GROUP BY cardNo) counttable
+        WHERE DATE_FORMAT(DATE,'%Y-%m-%d %H:%i') BETWEEN #{begin} AND #{end} AND cardData.cardNo=counttable.cardNo ORDER BY DATE ASC
+    </select>
+
 </mapper>

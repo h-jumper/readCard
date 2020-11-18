@@ -1,5 +1,8 @@
 package com.jumper.readCard.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Arrays;
 import java.util.Date;
 
 public class CardData {
@@ -17,7 +20,29 @@ public class CardData {
     private String begin;
     private String end;
     private String check;
+    private byte[] bytes;
     private String photoBuffer;
+    private int countNum;
+
+    public CardData(String name, String sex, String nation, String born, String address, String cardNo, String police, String activityLFrom, String activityLTo, String deviceNo, Date date, String begin, String end, String check, byte[] bytes, String photoBuffer, int countNum) {
+        this.name = name;
+        this.sex = sex;
+        this.nation = nation;
+        this.born = born;
+        this.address = address;
+        this.cardNo = cardNo;
+        this.police = police;
+        this.activityLFrom = activityLFrom;
+        this.activityLTo = activityLTo;
+        this.deviceNo = deviceNo;
+        this.date = date;
+        this.begin = begin;
+        this.end = end;
+        this.check = check;
+        this.bytes = bytes;
+        this.photoBuffer = photoBuffer;
+        this.countNum = countNum;
+    }
 
     @Override
     public String toString() {
@@ -36,8 +61,45 @@ public class CardData {
                 ", begin='" + begin + '\'' +
                 ", end='" + end + '\'' +
                 ", check='" + check + '\'' +
+                ", bytes=" + Arrays.toString(bytes) +
                 ", photoBuffer='" + photoBuffer + '\'' +
+                ", countNum=" + countNum +
                 '}';
+    }
+
+    public int getCountNum() {
+        return countNum;
+    }
+
+    public void setCountNum(int countNum) {
+        this.countNum = countNum;
+    }
+
+    public byte[] getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(byte[] bytes) {
+        this.bytes = bytes;
+    }
+
+    public CardData(String name, String sex, String nation, String born, String address, String cardNo, String police, String activityLFrom, String activityLTo, String deviceNo, Date date, String begin, String end, String check, byte[] bytes, String photoBuffer) {
+        this.name = name;
+        this.sex = sex;
+        this.nation = nation;
+        this.born = born;
+        this.address = address;
+        this.cardNo = cardNo;
+        this.police = police;
+        this.activityLFrom = activityLFrom;
+        this.activityLTo = activityLTo;
+        this.deviceNo = deviceNo;
+        this.date = date;
+        this.begin = begin;
+        this.end = end;
+        this.check = check;
+        this.bytes = bytes;
+        this.photoBuffer = photoBuffer;
     }
 
     public String getBegin() {

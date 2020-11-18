@@ -30,4 +30,9 @@ public class CardDataServiceImpl implements CardDataService {
     public List<DateData> selectLastThreeTime(String cardNo, String begin, String end) {
         return cardDataMapper.selectLastThreeTime(cardNo, begin, end);
     }
+
+    @Override
+    public List<CardData> selectCardDataByTimeForXLS(String begin, String end) {
+        return cardDataMapper.selectCardDataByTimeForXLS(begin, end);
+    }
 }

@@ -18,4 +18,6 @@ public interface CardDataMapper {
     public List<SimpleCardData> selectCardDataByTime(String begin,String end);
 
     public List<DateData> selectLastThreeTime(String cardNo, String begin, String end);
+
+    public List<CardData> selectCardDataByTimeForXLS(String begin,String end);
 }
